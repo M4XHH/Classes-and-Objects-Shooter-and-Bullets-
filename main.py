@@ -97,28 +97,32 @@ while p1.alive and p2.alive:
     p1.move()
     p2.move()
     for bullet in p1.bullets:
-        if bullet.distance(p2)< 20:
+        bullet.move_bullet()
+        if bullet.distance(p2) < 20:
+            bullet.ht()
             p2.health -= 1
             if p2.health == 2:
                 p2.color("yellow")
             elif p2.health == 1:
                 p2.color("red")
             elif p2.health == 0:
+                p2.ht()
                 p2.alive = False
             bullet.ht()
-            p2.bullets.remove(bullet)
-        bullet.move_bullet()
+            p1.bullets.remove(bullet)
+       
     for bullet in p2.bullets:
-        if bullet.distance(p1)< 20:
+        bullet.move_bullet()
+        if bullet.distance(p1) < 20:
             p1.health -= 1
             if p1.health == 2:
                 p1.color("yellow")
             elif p1.health == 1:
                 p1.color("red")
             elif p1.health == 0:
+                p1.ht()
                 p1.alive = False
             bullet.ht()
-            p1.bullets.remove(bullet)
-        bullet.move_bullet()
+            p2.bullets.remove(bullet)
 
 screen.exitonclick()
